@@ -26,6 +26,9 @@ class CustomerController extends BaseController
     {
         $customer_list = DB::table('customer')->get();
 
+        // print_r($customer_list);
+        // exit;
+
         return View::make('customer_list', array(
             'customer_list' => $customer_list
         ));

@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Customer List</title>
+        <title>Student Grade</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
         <div class="container pt-3 pb-3">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="{{ url('customer') }}">Customer</a>
+              <a class="nav-link" href="{{ url('customer') }}">Customer</a>
             </li>
             <li>
               <a class="nav-link" href="{{ url('sale') }}">Sale</a>
@@ -25,45 +25,53 @@
               <a class="nav-link" href="{{ url('report') }}">Sale Report</a>
             </li>
             <li>
-              <a class="nav-link" href="{{ url('student') }}">Student Grade</a>
+              <a class="nav-link active" href="{{ url('student') }}">Student Grade</a>
             </li>
           </ul>
         </div>
+        
+        <div class="container">
+        <div class="jumbotron">
+          <h4 class="">SQL Only (MySQL)</h4>
+            <code class="d-block">
+              SELECT 
+                <br>&nbsp;&nbsp;Student
+                <br>&nbsp;&nbsp;,Score
+                <br>&nbsp;&nbsp;,(CASE
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;WHEN Score >= 90 THEN "A"
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;WHEN Score >= 80 AND Score <= 89 THEN "B"
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;WHEN Score >= 70 AND Score <= 79 THEN "C"
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;WHEN Score >= 60 AND Score <= 69 THEN "D"
+                <br>&nbsp;&nbsp;&nbsp;&nbsp;ELSE "E"
+                <br>&nbsp;&nbsp;END) AS Grade
+              <br>FROM score
+            </code>
+          </div>
+        </div>
 
         <div class="container">
-            <h1>Customer</h1>
-            <br>
-            <div>
-                <a class="btn btn-success" href="{{ url('customer/add') }}">Add</a>
-            </div>
+            <h1>Student Grade</h1>
             <br>
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Customer ID</th>
-                  <th scope="col">Birthday</th>
-                  <th scope="col">Percent 1</th>
-                  <th scope="col">Percent 2</th>
+                  <th scope="col">Student</th>
+                  <th scope="col">Score</th>
+                  <th scope="col">Grade</th>
                 </tr>
               </thead>
               <tbody>
-                @if(count($customer_list) > 0)
-                  @foreach($customer_list as $key => $data)
+                @if(count($score_list) > 0)
+                  @foreach($score_list as $key => $data)
                   <tr>
-                    <th>
-                        <a class="btn btn-info" href="{{ url('customer/edit') }}/{{$data->Customer_Id}}">Edit</a>
-                        <a class="btn btn-danger" href="{{ url('customer/delete') }}/{{$data->Customer_Id}}">Delete</a>
-                    </th>
-                    <td>{{$data->Customer_Id}}</td>
-                    <td>{{$data->Birthday}}</td>
-                    <td>{{$data->Percent_1}}</td>
-                    <td>{{$data->Percent_2}}</td>
+                    <td>{{$data->Student}}</td>
+                    <td>{{$data->Score}}</td>
+                    <td>{{$data->_grade}}</td>
                   </tr>
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="5">Data not found.</td>
+                    <td colspan="3">Data not found.</td>
                   </tr>
                 @endif
               </tbody>

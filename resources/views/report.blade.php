@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Customer List</title>
+        <title>Sale Report</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -16,54 +16,53 @@
         <div class="container pt-3 pb-3">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a class="nav-link active" href="{{ url('customer') }}">Customer</a>
+              <a class="nav-link" href="{{ url('customer') }}">Customer</a>
             </li>
             <li>
               <a class="nav-link" href="{{ url('sale') }}">Sale</a>
             </li>
             <li>
-              <a class="nav-link" href="{{ url('report') }}">Sale Report</a>
+              <a class="nav-link active" href="{{ url('report') }}">Sale Report</a>
             </li>
             <li>
               <a class="nav-link" href="{{ url('student') }}">Student Grade</a>
             </li>
           </ul>
         </div>
-
+        
         <div class="container">
-            <h1>Customer</h1>
-            <br>
-            <div>
-                <a class="btn btn-success" href="{{ url('customer/add') }}">Add</a>
-            </div>
+            <h1>Sale Report</h1>
             <br>
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
                   <th scope="col">Customer ID</th>
-                  <th scope="col">Birthday</th>
-                  <th scope="col">Percent 1</th>
-                  <th scope="col">Percent 2</th>
+                  <th scope="col">Product ID</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Gross</th>
+                  <th scope="col">Discount 1</th>
+                  <th scope="col">Discount 2</th>
+                  <th scope="col">Net</th>
                 </tr>
               </thead>
               <tbody>
-                @if(count($customer_list) > 0)
-                  @foreach($customer_list as $key => $data)
+                @if(count($customer_sale_list) > 0)
+                  @foreach($customer_sale_list as $key => $data)
                   <tr>
-                    <th>
-                        <a class="btn btn-info" href="{{ url('customer/edit') }}/{{$data->Customer_Id}}">Edit</a>
-                        <a class="btn btn-danger" href="{{ url('customer/delete') }}/{{$data->Customer_Id}}">Delete</a>
-                    </th>
-                    <td>{{$data->Customer_Id}}</td>
-                    <td>{{$data->Birthday}}</td>
-                    <td>{{$data->Percent_1}}</td>
-                    <td>{{$data->Percent_2}}</td>
+                    <td>{{$data->Ref_Customer_Id}}</td>
+                    <td>{{$data->Product_Id}}</td>
+                    <td>{{number_format($data->Quantity)}}</td>
+                    <td>{{number_format($data->Price, 2)}}</td>
+                    <td>{{number_format($data->Price * $data->Quantity, 2)}}</td>
+                    <td>{{number_format($data->Discount_1, 2)}}</td>
+                    <td>{{number_format($data->Discount_2, 2)}}</td>
+                    <td>{{number_format(($data->Price * $data->Quantity) - $data->Discount_1 - $data->Discount_2, 2)}}</td>
                   </tr>
                   @endforeach
                 @else
                   <tr>
-                    <td colspan="5">Data not found.</td>
+                    <td colspan="8">Data not found.</td>
                   </tr>
                 @endif
               </tbody>

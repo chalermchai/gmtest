@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Customer</title>
+        <title>Add Customer</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -13,11 +13,28 @@
        
     </head>
     <body class="">
+        <div class="container pt-3 pb-3">
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" href="{{ url('customer') }}">Customer</a>
+            </li>
+            <li>
+              <a class="nav-link" href="{{ url('sale') }}">Sale</a>
+            </li>
+            <li>
+              <a class="nav-link" href="{{ url('report') }}">Sale Report</a>
+            </li>
+            <li>
+              <a class="nav-link" href="{{ url('student') }}">Student Grade</a>
+            </li>
+          </ul>
+        </div>
+        
         <div class="container">
             <h1>Add Customer</h1>
             <br>
             <div>
-                <a class="btn btn-default" href="{{ url('customer') }}">Back</a>
+                <a class="btn btn-link" href="{{ url('customer') }}"><< Back</a>
             </div>
             <br>
             <div>
@@ -42,7 +59,7 @@
                 </form>
             </div>
         </div>
-        <script type="text/javascript" src="{{ asset('assets/bootstrap-4.4.1/js/bootstrap.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/js/jquery-3.5.1/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/bootstrap-4.4.1/js/bootstrap.min.js') }}"></script>
     </body>
 </html>

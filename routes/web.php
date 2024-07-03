@@ -33,3 +33,20 @@ Route::get('/customer/edit/{id}', 'App\Http\Controllers\CustomerController@edit'
 Route::post('/customer/edit/{id}', 'App\Http\Controllers\CustomerController@do_edit');
 
 Route::get('/customer/delete/{id}', 'App\Http\Controllers\CustomerController@delete');
+
+Route::get('/sale', 'App\Http\Controllers\SaleCustomerController@index');
+Route::get('/sale/lists', 'App\Http\Controllers\SaleCustomerController@index');
+
+Route::get('/sale/add', 'App\Http\Controllers\SaleCustomerController@add');
+Route::post('/sale/add', 'App\Http\Controllers\SaleCustomerController@do_add');
+
+Route::get('/sale/edit/{id}', 'App\Http\Controllers\SaleCustomerController@edit');
+Route::post('/sale/edit/{id}', 'App\Http\Controllers\SaleCustomerController@do_edit');
+
+Route::get('/sale/delete/{id}', 'App\Http\Controllers\SaleCustomerController@delete');
+
+Route::get('/report', 'App\Http\Controllers\ReportController@index');
+Route::get('/report/lists', 'App\Http\Controllers\ReportController@index');
+
+Route::get('/student', 'App\Http\Controllers\StudentController@index');
+Route::get('/student/lists', 'App\Http\Controllers\StudentController@index');
